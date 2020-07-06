@@ -1,17 +1,24 @@
 ﻿using System.Collections.Generic;
+using SpaceX.Services.Contracts;
 using System.Threading.Tasks;
-using System.Net.Http;
+using SpaceX.Services.DTOs;
 using Newtonsoft.Json;
+using System.Net.Http;
 using SpaceX.Models;
 using System;
+using SpaceX.Services.Mappers;
 
 namespace SpaceX.Services
 {
-    public class SpaceXLaunches
+    public class SpaceXService : ISpaceXService
     {
         private const string spaceXData = "https://api.spacexdata.com/v3/launches/";
 
-        public async Task<IEnumerable<Launch>> GetAll()
+        public SpaceXService()
+        {
+        }
+
+        public async Task<LaunchDTO> GetAllAsync()
         {
             using (var client = new HttpClient())
             {
@@ -21,10 +28,8 @@ namespace SpaceX.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                    //return await response.Content.ReadFromJsonAsync<LaunchModel>();
-
                     string myJsonAsString = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<IEnumerable<Launch>>(myJsonAsString);
+                    return JsonConvert.DeserializeObject<Launch>(myJsonAsString).MapToDto();
                 }
 
                 else

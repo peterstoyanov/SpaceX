@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace SpaceX.Models
 {
@@ -17,6 +18,6 @@ namespace SpaceX.Models
         public string Video { get; set; }
 
         [JsonProperty(PropertyName = "flickr_images")]
-        public string[] Images { get; set; }
+        public ICollection<string> Images { get; set; }
     }
 }
