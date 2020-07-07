@@ -9,15 +9,11 @@ using Newtonsoft.Json;
 using SpaceX.Models;
 using System;
 
-namespace SpaceX.Services
+namespace SpaceX.Services.Contracts
 {
-    public class SpaceXService : ISpaceXService
+    public class GetDataService : IGetDataService
     {
         private const string spaceXData = "https://api.spacexdata.com/v3/launches/";
-
-        public SpaceXService()
-        {
-        }
 
         public async Task<ICollection<LaunchDTO>> GetAllAsync()
         {

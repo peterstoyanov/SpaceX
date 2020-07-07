@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SpaceX.Services;
+using SpaceX.Services.Contracts;
 using SpaceX.Services.Contracts;
 
 namespace SpaceX.Client
@@ -26,7 +21,8 @@ namespace SpaceX.Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddScoped<ISpaceXService, SpaceXService>();
+            services.AddScoped<IGetDataService, GetDataService>();
+            services.AddScoped<IDisplayDataService, DisplayDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

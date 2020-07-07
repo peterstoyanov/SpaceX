@@ -1,107 +1,111 @@
-﻿@model IEnumerable<SpaceX.Client.Models.LaunchViewModel>
-
+﻿@model X.PagedList.StaticPagedList<SpaceX.Client.Models.DataViewModel>
 <!-- Launch Plans - Section 3 -->
 <section id="tm-section-3" class="tm-section">
     <div class="row mb-4">
         <header class="col-xl-12"><h2 class="tm-text-shadow">Launch plans</h2></header>
     </div>
     <table class="table">
-            <thead>
+        <thead>
+            <tr>
+                <th>
+                    Flight №
+                </th>
+                <th>
+                    Mission
+                </th>
+                <th>
+                    Launch Date
+                </th>
+                <th>
+                    Rocket Name
+                </th>
+                <th>
+                    Rocket Type
+                </th>
+                <th>
+                    Details
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FlightNumber)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.MissionName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LaunchDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LaunchSuccess)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.RocketId)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.RocketName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.RocketType)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LinkMissionPatch)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LinkMissionPatchSmall)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LinkArticle)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LinkVideo)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Details)
-                    </th>
-                    <th></th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FlightNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MissionName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LaunchDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RocketName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RocketType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Details)
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FlightNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MissionName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LaunchDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LaunchSuccess)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RocketId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RocketName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RocketType)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LinkMissionPatch)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LinkMissionPatchSmall)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LinkArticle)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LinkVideo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Details)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                        </td>
-                    </tr>
-                }
-            </tbody>
+            }
+        </tbody>
     </table>
 </section>
 
+<body style="background-color:#ffffff">
+    <form asp-action="Index" method="get">
+        <div class="form-actions" style="padding-bottom:0px">
 
+            Search Reports: <input type="text" name="search" value="@ViewData["Search"]" />
+            <input type="submit" value="Search" class="btn btn-outline-dark" />
+            @ViewData["ResultsCount"] result(s)
 
+            <p class="d-inline-block">
+                <div class="dropdown float-right">
+                    <button class="d-inline-flex btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown">
+                        Sort By
+                    </button>
+                    <ul class="dropdown-menu text-white" style="background-color: #304040">
+                        <li class="nav-item btn-outline-dark" style="padding-left:10px">
+                            <a class="text-white" asp-action="Index" asp-route-sort="@ViewData["SortByFlight"]"
+                               asp-route-search="@ViewData["Search"]">Flight</a>
+                        </li>
+                        <li class="nav-item btn-outline-dark" style="padding-left:10px">
+                            <a class="text-white" asp-action="Index" asp-route-sort="@ViewData["SortByMission"]"
+                               asp-route-search="@ViewData["Search"]">Mission</a>
+                        </li>
+                </div>
+            </p>
+        </div>
+    </form>
 
-
+    <hr />
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <p class="text-dark">
+        <a asp-action="Index"
+           asp-route-sort="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageNumber - 1)"
+           asp-route-search="@ViewData["Search"]"
+           class="btn btn-outline-dark @prevDisabled">
+            Previous
+        </a>
+        &nbsp;@(ViewData["PageNumber"] ?? 1)&nbsp;
+        <a asp-action="Index"
+           asp-route-sort="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageNumber + 1)"
+           asp-route-search="@ViewData["Search"]"
+           class="btn btn-outline-dark @nextDisabled">
+            Next
+        </a>
+    </p>
+</body>
 
 
 

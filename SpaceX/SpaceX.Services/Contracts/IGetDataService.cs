@@ -4,7 +4,7 @@ using SpaceX.Services.DTOs;
 
 namespace SpaceX.Services.Contracts
 {
-    public interface ISpaceXService
+    public interface IGetDataService
     {
         Task<ICollection<LaunchDTO>> GetAllAsync();
     }

@@ -7,9 +7,9 @@ namespace SpaceX.Client.ClientMapper
 {
     public static class LaunchClientMapper
     {
-        public static LaunchViewModel MapToVM(this LaunchDTO modelDto)
+        public static DataViewModel MapToVM(this LaunchDTO modelDto)
         {
-            return new LaunchViewModel
+            return new DataViewModel
             {
                 FlightNumber = modelDto.FlightNumber,
                 MissionName = modelDto.MissionName,
@@ -27,7 +27,7 @@ namespace SpaceX.Client.ClientMapper
             };
         }
 
-        public static ICollection<LaunchViewModel> MapToVMs(this ICollection<LaunchDTO> models)
+        public static ICollection<DataViewModel> MapToVMs(this ICollection<LaunchDTO> models)
              => models.Select(MapToVM).ToList();
     }
 }
