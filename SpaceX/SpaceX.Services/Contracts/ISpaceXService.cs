@@ -6,6 +6,6 @@ namespace SpaceX.Services.Contracts
 {
     public interface ISpaceXService
     {
-        Task<LaunchDTO> GetAllAsync();
+        Task<ICollection<LaunchDTO>> GetAllAsync();
     }
 }

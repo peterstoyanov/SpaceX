@@ -1,5 +1,8 @@
-﻿using SpaceX.Services.DTOs;
+﻿using System.Collections.Generic;
+using SpaceX.Services.DTOs;
 using SpaceX.Models;
+using System.Linq;
+using System;
 
 namespace SpaceX.Services.Mappers
 {
@@ -10,6 +13,10 @@ namespace SpaceX.Services.Mappers
     {
         public static LaunchDTO MapToDto(this Launch model)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException();
+            }
             return new LaunchDTO
             {
                 FlightNumber = model.FlightNumber,
@@ -19,9 +26,6 @@ namespace SpaceX.Services.Mappers
                 RocketId = model.Rocket.Id,
                 RocketName = model.Rocket.Name,
                 RocketType = model.Rocket.Type,
-                FailureTime = model.FailureDetails.Time,
-                FailureAltitude = model.FailureDetails.Altitude,
-                FailureReason = model.FailureDetails.Reason,
                 LinkMissionPatch = model.Links.MissionPatch,
                 LinkMissionPatchSmall = model.Links.MissionPatchSmall,
                 LinkArticle = model.Links.Article,
@@ -31,6 +35,7 @@ namespace SpaceX.Services.Mappers
             };
         }
 
-
+        public static ICollection<LaunchDTO> MapToDtos(this ICollection<Launch> models)
+             => models.Select(MapToDto).ToList();
     }
 }

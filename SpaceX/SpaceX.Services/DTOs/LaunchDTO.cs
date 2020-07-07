@@ -14,10 +14,6 @@ namespace SpaceX.Services.DTOs
         public string RocketName { get; set; }
         public string RocketType { get; set; }
 
-        public int FailureTime { get; set; }
-        public int? FailureAltitude { get; set; }
-        public string FailureReason { get; set; }
-
         public string LinkMissionPatch { get; set; }
         public string LinkMissionPatchSmall { get; set; }
         public string LinkArticle { get; set; }

@@ -9,7 +9,7 @@ namespace SpaceX.Models
         public string MissionPatch { get; set; }
 
         [JsonProperty(PropertyName = "mission_patch_small")]
-        public string MissionPatchSmall { get; set; }
+        public string MissionPatchSmall { get; set; } 
 
         [JsonProperty(PropertyName = "article_link")]
         public string Article { get; set; }
@@ -18,6 +18,6 @@ namespace SpaceX.Models
         public string Video { get; set; }
 
         [JsonProperty(PropertyName = "flickr_images")]
-        public ICollection<string> Images { get; set; }
+        public ICollection<string> Images { get; set; } = new List<string>();
     }
 }

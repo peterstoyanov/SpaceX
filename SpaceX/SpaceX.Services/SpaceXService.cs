@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using SpaceX.Services.Contracts;
+using SpaceX.Services.Utilities;
+using SpaceX.Services.Mappers;
 using System.Threading.Tasks;
 using SpaceX.Services.DTOs;
-using Newtonsoft.Json;
 using System.Net.Http;
+using Newtonsoft.Json;
 using SpaceX.Models;
 using System;
-using SpaceX.Services.Mappers;
 
 namespace SpaceX.Services
 {
@@ -18,7 +19,7 @@ namespace SpaceX.Services
         {
         }
 
-        public async Task<LaunchDTO> GetAllAsync()
+        public async Task<ICollection<LaunchDTO>> GetAllAsync()
         {
             using (var client = new HttpClient())
             {
@@ -29,7 +30,10 @@ namespace SpaceX.Services
                 if (response.IsSuccessStatusCode)
                 {
                     string myJsonAsString = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<Launch>(myJsonAsString).MapToDto();
+                    var deserialize = JsonConvert.DeserializeObject<ICollection<Launch>>(myJsonAsString).MapToDtos();
+                    deserialize.CheckCollection();
+
+                    return deserialize;
                 }
 
                 else

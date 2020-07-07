@@ -20,9 +20,6 @@ namespace SpaceX.Models
         [JsonProperty(PropertyName = "launch_success")]
         public bool? LaunchSuccess { get; set; }
 
-        [JsonProperty(PropertyName = "launch_failure_details")]
-        public FailureDetails FailureDetails { get; set; }
-
         [JsonProperty(PropertyName = "links")]
         public Links Links { get; set; }
 

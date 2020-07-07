@@ -1,5 +1,7 @@
-﻿using SpaceX.Client.Models;
+﻿using System.Collections.Generic;
+using SpaceX.Client.Models;
 using SpaceX.Services.DTOs;
+using System.Linq;
 
 namespace SpaceX.Client.ClientMapper
 {
@@ -16,9 +18,6 @@ namespace SpaceX.Client.ClientMapper
                 RocketId = modelDto.RocketId,
                 RocketName = modelDto.RocketName,
                 RocketType = modelDto.RocketType,
-                FailureTime = modelDto.FailureTime,
-                FailureAltitude = modelDto.FailureAltitude,
-                FailureReason = modelDto.FailureReason,
                 LinkMissionPatch = modelDto.LinkMissionPatch,
                 LinkMissionPatchSmall = modelDto.LinkMissionPatchSmall,
                 LinkArticle = modelDto.LinkArticle,
@@ -28,27 +27,30 @@ namespace SpaceX.Client.ClientMapper
             };
         }
 
-        public static LaunchDTO MapToBreweryDTO(this LaunchViewModel modelVM)
-        {
-            return new LaunchDTO
-            {
-                FlightNumber = modelVM.FlightNumber,
-                MissionName = modelVM.MissionName,
-                LaunchDate = modelVM.LaunchDate,
-                LaunchSuccess = modelVM.LaunchSuccess,
-                RocketId = modelVM.RocketId,
-                RocketName = modelVM.RocketName,
-                RocketType = modelVM.RocketType,
-                FailureTime = modelVM.FailureTime,
-                FailureAltitude = modelVM.FailureAltitude,
-                FailureReason = modelVM.FailureReason,
-                LinkMissionPatch = modelVM.LinkMissionPatch,
-                LinkMissionPatchSmall = modelVM.LinkMissionPatchSmall,
-                LinkArticle = modelVM.LinkArticle,
-                LinkVideo = modelVM.LinkVideo,
-                LinkImages = modelVM.LinkImages,
-                Details = modelVM.Details,
-            };
-        }
+        //public static LaunchDTO MapToDto(this LaunchViewModel modelVM)
+        //{
+        //    return new LaunchDTO
+        //    {
+        //        FlightNumber = modelVM.FlightNumber,
+        //        MissionName = modelVM.MissionName,
+        //        LaunchDate = modelVM.LaunchDate,
+        //        LaunchSuccess = modelVM.LaunchSuccess,
+        //        RocketId = modelVM.RocketId,
+        //        RocketName = modelVM.RocketName,
+        //        RocketType = modelVM.RocketType,
+        //        FailureTime = modelVM.FailureTime,
+        //        FailureAltitude = modelVM.FailureAltitude,
+        //        FailureReason = modelVM.FailureReason,
+        //        LinkMissionPatch = modelVM.LinkMissionPatch,
+        //        LinkMissionPatchSmall = modelVM.LinkMissionPatchSmall,
+        //        LinkArticle = modelVM.LinkArticle,
+        //        LinkVideo = modelVM.LinkVideo,
+        //        LinkImages = modelVM.LinkImages,
+        //        Details = modelVM.Details,
+        //    };
+        //}
+
+        public static ICollection<LaunchViewModel> MapToVMs(this ICollection<LaunchDTO> models)
+             => models.Select(MapToVM).ToList();
     }
 }
