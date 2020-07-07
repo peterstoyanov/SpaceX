@@ -1,32 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Logging;
+using SpaceX.Client.ClientMapper;
+using SpaceX.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 using SpaceX.Client.Models;
+using System.Diagnostics;
+using System;
 
 namespace SpaceX.Client.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ILogger<HomeController> logger;
+        private readonly ISpaceXService spaceXService;
+        public HomeController(ILogger<HomeController> logger, ISpaceXService spaceXService)
         {
-            _logger = logger;
+            this.logger = logger;
+            this.spaceXService = spaceXService ?? throw new ArgumentNullException(nameof(spaceXService));
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await GetPlans();
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpGet]
+        public async Task<IActionResult> GetPlans()
         {
-            return View();
+            var plans = (await spaceXService.GetAllAsync()).MapToVMs();
+            return View(plans);
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

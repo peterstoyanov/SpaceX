@@ -27,29 +27,6 @@ namespace SpaceX.Client.ClientMapper
             };
         }
 
-        //public static LaunchDTO MapToDto(this LaunchViewModel modelVM)
-        //{
-        //    return new LaunchDTO
-        //    {
-        //        FlightNumber = modelVM.FlightNumber,
-        //        MissionName = modelVM.MissionName,
-        //        LaunchDate = modelVM.LaunchDate,
-        //        LaunchSuccess = modelVM.LaunchSuccess,
-        //        RocketId = modelVM.RocketId,
-        //        RocketName = modelVM.RocketName,
-        //        RocketType = modelVM.RocketType,
-        //        FailureTime = modelVM.FailureTime,
-        //        FailureAltitude = modelVM.FailureAltitude,
-        //        FailureReason = modelVM.FailureReason,
-        //        LinkMissionPatch = modelVM.LinkMissionPatch,
-        //        LinkMissionPatchSmall = modelVM.LinkMissionPatchSmall,
-        //        LinkArticle = modelVM.LinkArticle,
-        //        LinkVideo = modelVM.LinkVideo,
-        //        LinkImages = modelVM.LinkImages,
-        //        Details = modelVM.Details,
-        //    };
-        //}
-
         public static ICollection<LaunchViewModel> MapToVMs(this ICollection<LaunchDTO> models)
              => models.Select(MapToVM).ToList();
     }

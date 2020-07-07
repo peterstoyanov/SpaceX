@@ -24,7 +24,6 @@ namespace SpaceX.Services
             using (var client = new HttpClient())
             {
                 var request = new HttpRequestMessage(HttpMethod.Get, spaceXData);
-
                 HttpResponseMessage response = await client.SendAsync(request);
 
                 if (response.IsSuccessStatusCode)

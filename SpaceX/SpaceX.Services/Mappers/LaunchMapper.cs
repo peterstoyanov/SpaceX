@@ -17,6 +17,7 @@ namespace SpaceX.Services.Mappers
             {
                 throw new ArgumentNullException();
             }
+
             return new LaunchDTO
             {
                 FlightNumber = model.FlightNumber,
