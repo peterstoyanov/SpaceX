@@ -5,6 +5,7 @@
     <tr>
         <th>
             @Html.ActionLink("FlightNumber", "Index")
+            @*@Html.LabelFor(model => item.FlightNumber, "Flight Number", new { @class = "control-label" })*@
         </th>
         <th>
             @Html.ActionLink("MissionName", "Index")
@@ -46,6 +47,5 @@
             </td>
         </tr>
     }
-
 </table>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

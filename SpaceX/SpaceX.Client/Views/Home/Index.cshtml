@@ -1,20 +1,20 @@
-﻿<partial name="_Introduction" />
-<partial name="_MissionPatches" />
+﻿@model IEnumerable<SpaceX.Client.Models.DataViewModel>
 
+<partial name="_Introduction" />
+<partial name="_MissionPatches" />
 <partial name="_ContactMe" />
 
-@model IEnumerable<SpaceX.Client.Models.DataViewModel>
-
-
-<h2>Plan List</h2>
-
-<p>
-    Find by name: <input id="SearchString" name="SearchString" type="text" value="" />
-    <input type="button" value="Search" id="btnSearch" />
-</p>
-<div id="LaunchList">
-    <partial name="LaunchList" />
-</div>
+<!-- Launch Plans -- Section 3 -->
+<section id="tm-section-3" class="tm-section">
+    <h2>Launch Plans</h2>
+    <p>
+        Find by name: <input id="SearchString" name="SearchString" type="text" value="" />
+        <input type="button" value="Search" id="btnSearch" />
+    </p>
+    <div id="LaunchList">
+        <partial name="LaunchList" />
+    </div>
+</section>
 
 @section scripts
 {
@@ -24,7 +24,7 @@
             $.ajax({
                 url: location.href,
                 success: function (result) {
-                    $('#ProductList').html(result);
+                    $('#LaunchList').html(result);
                 }
             });
         });
@@ -107,34 +107,34 @@
                 var sort;
                 switch (currentSortOption) {
                     case "flight":
-                        sort = 'sortOption=flight';
-                        break;
-                    case "flight_desc":
                         sort = 'sortOption=flight_desc';
                         break;
-                    case "mission":
-                        sort = 'sortOption=mission';
+                    case "flight_desc":
+                        sort = 'sortOption=flight';
                         break;
-                    case "mission_desc":
+                    case "mission":
                         sort = 'sortOption=mission_desc';
                         break;
-                    case "date":
-                        sort = 'sortOption=date';
+                    case "mission_desc":
+                        sort = 'sortOption=mission';
                         break;
-                    case "date_desc":
+                    case "date":
                         sort = 'sortOption=date_desc';
                         break;
-                    case "rocketName":
-                        sort = 'sortOption=rocketName';
+                    case "date_desc":
+                        sort = 'sortOption=date';
                         break;
-                    case "rocketName_desc":
+                    case "rocketName":
                         sort = 'sortOption=rocketName_desc';
                         break;
+                    case "rocketName_desc":
+                        sort = 'sortOption=rocketName';
+                        break;
                     case "rocketType":
-                        sort = 'sortOption=rocketType';
+                        sort = 'sortOption=rocketType_desc';
                         break;
                     case "rocketType_desc":
-                        sort = 'sortOption=rocketType_desc';
+                        sort = 'sortOption=rocketType';
                         break;
                     default:
                         sort = '';
@@ -188,5 +188,4 @@
         });
     </script>
 }
-
 

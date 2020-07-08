@@ -27,7 +27,6 @@ namespace SpaceX.Client.Controllers
         {
             int pageSize = 10;
             var plans = await getDataService.GetAllAsync();
-
             plans = displayDataService.SearchData(searchString, plans);
             plans = displayDataService.SortData(sortOption, plans);
 

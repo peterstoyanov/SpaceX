@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using SpaceX.Services.Contracts;
-using SpaceX.Services.Contracts;
 
 namespace SpaceX.Client
 {
