@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using SpaceX.Services.Mappers;
 using SpaceX.Services.DTOs;
-using SpaceX.Models;
 using System.Linq;
 using System;
 
@@ -19,41 +17,20 @@ namespace SpaceX.Services.Contracts
         {
             if (sort != null)
             {
-                switch (sort.ToLower())
+                data = (sort.ToLower()) switch
                 {
-                    case "flight":
-                        data = data.OrderBy(x => x.FlightNumber).ToList();
-                        break;
-                    case "flight_desc":
-                        data = data.OrderByDescending(x => x.FlightNumber).ToList();
-                        break;
-                    case "mission":
-                        data = data.OrderBy(x => x.MissionName).ToList();
-                        break;
-                    case "mission_desc":
-                        data = data.OrderByDescending(x => x.MissionName).ToList();
-                        break;
-                    case "date":
-                        data = data.OrderBy(x => x.LaunchDate).ToList();
-                        break;
-                    case "date_desc":
-                        data = data.OrderByDescending(x => x.LaunchDate).ToList();
-                        break;
-                    case "rocketName":
-                        data = data.OrderBy(x => x.RocketName).ToList();
-                        break;
-                    case "rocketName_desc":
-                        data = data.OrderByDescending(x => x.RocketName).ToList();
-                        break;
-                    case "rocketType":
-                        data = data.OrderBy(x => x.RocketType).ToList();
-                        break;
-                    case "rocketType_desc":
-                        data = data.OrderByDescending(x => x.RocketType).ToList();
-                        break;
-                    default:
-                        break;
-                }
+                    "flight" => data.OrderBy(x => x.FlightNumber).ToList(),
+                    "flight_desc" => data.OrderByDescending(x => x.FlightNumber).ToList(),
+                    "mission" => data.OrderBy(x => x.MissionName).ToList(),
+                    "mission_desc" => data.OrderByDescending(x => x.MissionName).ToList(),
+                    "date" => data.OrderBy(x => x.LaunchDate).ToList(),
+                    "date_desc" => data.OrderByDescending(x => x.LaunchDate).ToList(),
+                    "rocketName" => data.OrderBy(x => x.RocketName).ToList(),
+                    "rocketName_desc" => data.OrderByDescending(x => x.RocketName).ToList(),
+                    "rocketType" => data.OrderBy(x => x.RocketType).ToList(),
+                    "rocketType_desc" => data.OrderByDescending(x => x.RocketType).ToList(),
+                    _ => data.OrderBy(p => p.FlightNumber).ToList(),
+                };
             }
             return data;
         }
