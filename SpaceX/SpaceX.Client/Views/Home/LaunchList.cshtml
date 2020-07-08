@@ -1,0 +1,51 @@
+﻿@model X.PagedList.IPagedList<SpaceX.Client.Models.DataViewModel>
+@using X.PagedList.Mvc.Core
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("FlightNumber", "Index")
+        </th>
+        <th>
+            @Html.ActionLink("MissionName", "Index")
+        <th>
+        <th>
+            @Html.ActionLink("LaunchDate", "Index")
+        </th>
+        <th>
+            @Html.ActionLink("RocketName", "Index")
+        </th>
+        <th>
+            @Html.ActionLink("RocketType", "Index")
+        <th>
+        <th>
+            @Html.ActionLink("Details", "Index")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MissionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LaunchDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RocketName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RocketType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

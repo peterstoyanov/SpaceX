@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using SpaceX.Services.Contracts;
 using SpaceX.Services.Utilities;
 using SpaceX.Services.Mappers;
 using System.Threading.Tasks;
@@ -27,7 +26,6 @@ namespace SpaceX.Services.Contracts
                     string myJsonAsString = await response.Content.ReadAsStringAsync();
                     var deserialize = JsonConvert.DeserializeObject<ICollection<Launch>>(myJsonAsString).MapToDtos();
                     deserialize.CheckCollection();
-
                     return deserialize;
                 }
 

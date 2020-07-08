@@ -3,6 +3,7 @@ using SpaceX.Services.Mappers;
 using SpaceX.Services.DTOs;
 using SpaceX.Models;
 using System.Linq;
+using System;
 
 namespace SpaceX.Services.Contracts
 {
@@ -65,24 +66,12 @@ namespace SpaceX.Services.Contracts
         /// <returns>ICollection of LaunchDTO.</returns>
         public ICollection<LaunchDTO> SearchData(string search, ICollection<LaunchDTO> data)
         {
-            if (search != null)
+            if (!String.IsNullOrEmpty(search))
+            {
                 data = data.Where(r => r.MissionName.ToLower().Contains(search.ToLower())).ToList();
-
-            return data;
-        }
-
-        public ICollection<LaunchDTO> FilterData(ICollection<LaunchDTO> data, string mission, string rocketName, string rocketType)
-        {
-            if (mission != null)
-                data = data.Where(x => x.MissionName.ToLower().Contains(mission.ToLower())).ToList();
-
-            if (rocketName != null)
-                data = data.Where(x => x.RocketName.ToLower().Contains(rocketName.ToLower())).ToList();
-
-            if (rocketType != null)
-                data = data.Where(x => x.RocketType.ToLower().Contains(rocketType.ToLower())).ToList();
-
+            }
             return data;
         }
     }
 }
+
