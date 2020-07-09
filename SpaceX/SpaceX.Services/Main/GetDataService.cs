@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Runtime.InteropServices;
+using System.Collections.Generic;
 using SpaceX.Services.Mappers;
 using System.Threading.Tasks;
 using SpaceX.Services.Main;
@@ -6,7 +7,6 @@ using SpaceX.Services.DTOs;
 using System.Net.Http;
 using Newtonsoft.Json;
 using SpaceX.Models;
-using System;
 
 namespace SpaceX.Services.Contracts
 {
@@ -16,9 +16,20 @@ namespace SpaceX.Services.Contracts
 
         public GetDataService()
         {
+
         }
 
         public async Task<ICollection<LaunchDTO>> GetAllAsync()
+        {
+            return await GetData();
+        }
+
+        public async Task<ICollection<LaunchDTO>> GetDataById(int flightNumber)
+        {
+            return await GetData($"{spaceXData} + {flightNumber}");
+        }
+
+        private async Task<ICollection<LaunchDTO>> GetData([Optional] string address)
         {
             using (var client = new HttpClient())
             {
@@ -29,13 +40,14 @@ namespace SpaceX.Services.Contracts
                 {
                     string myJsonAsString = await response.Content.ReadAsStringAsync();
                     var deserialize = JsonConvert.DeserializeObject<ICollection<Launch>>(myJsonAsString).MapToDtos();
+                    client.Dispose();
                     deserialize.CheckCollection();
                     return deserialize;
                 }
 
                 else
                 {
-                    throw new ArgumentException($"There was an error while getting launches plans: {response.ReasonPhrase}");
+                    throw new HttpRequestException($"There was an error while getting data: {response.ReasonPhrase}");
                 }
             }
         }

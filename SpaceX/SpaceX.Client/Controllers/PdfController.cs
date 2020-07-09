@@ -5,18 +5,18 @@ using System;
 
 namespace SpaceX.Client.Controllers
 {
-    public class CreatePdfController : ControllerBase
+    public class PdfController : ControllerBase
     {
         private readonly IPdfCreatorService pdfCreatorService;
         private readonly IConverter converter;
 
-        public CreatePdfController(IPdfCreatorService pdfCreatorService, IConverter converter)
+        public PdfController(IPdfCreatorService pdfCreatorService, IConverter converter)
         {
             this.pdfCreatorService = pdfCreatorService ?? throw new ArgumentNullException(nameof(pdfCreatorService));
             this.converter = converter ?? throw new ArgumentNullException(nameof(converter));
         }
 
-        public IActionResult CreatePDF()
+        public IActionResult Create()
         {
             var pdf = pdfCreatorService.CreatePdf();
             var file = converter.Convert(pdf);
