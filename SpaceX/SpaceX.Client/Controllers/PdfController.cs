@@ -6,7 +6,7 @@ using System;
 
 namespace SpaceX.Client.Controllers
 {
-    public class PdfController : ControllerBase
+    public class PdfController : Controller
     {
         private readonly IPdfCreatorService pdfCreatorService;
         private readonly IConverter converter;
@@ -17,10 +17,10 @@ namespace SpaceX.Client.Controllers
             this.converter = converter ?? throw new ArgumentNullException(nameof(converter));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Create(int flightNumber)
+
+        public async Task<IActionResult> Create(int id)
         {
-            var pdf = await pdfCreatorService.CreatePdf(flightNumber);
+            var pdf = await pdfCreatorService.CreatePdf(id);
             var file = converter.Convert(pdf);
             return File(file, "application/pdf");
         }

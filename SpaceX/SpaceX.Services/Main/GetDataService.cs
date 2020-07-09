@@ -27,7 +27,8 @@ namespace SpaceX.Services.Contracts
 
         public async Task<LaunchDTO> GetDataByIdAsync(int flightNumber)
         {
-            return (await GetDataAsync($"{spaceXData} + {flightNumber}")).FirstOrDefault();
+            return (await GetDataAsync($"{spaceXData} + {flightNumber}"))
+                .FirstOrDefault(x => x.FlightNumber == flightNumber);
         }
 
         private async Task<ICollection<LaunchDTO>> GetDataAsync([Optional] string address)
