@@ -3,7 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using SpaceX.Services.Contracts;
+using SpaceX.Client.Utilities;
+using System.IO;
 
 namespace SpaceX.Client
 {
@@ -19,9 +20,9 @@ namespace SpaceX.Client
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddScoped<IGetDataService, GetDataService>();
-            services.AddScoped<IDisplayDataService, DisplayDataService>();
+            services.AddServices();
+            var context = new CustomAssemblyLoadContext();
+            context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "Utilities/DinkToPdfFiles/libwkhtmltox.dll"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

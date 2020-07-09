@@ -22,6 +22,9 @@
         <th>
             @Html.ActionLink("Details", "Index")
         </th>
+        <th>
+            PDF
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -43,9 +46,19 @@
                 @Html.DisplayFor(modelItem => item.RocketType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Details)
+                <section id="tm-section-2" class="tm-section tm-section-carousel">
+                    <a href="@item.Details">Info</a>
+                </section>
+            </td>
+            <td>
+                <a class="btn btn-primary" href="PDFLINK" download>
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                    Download PDF
+                </a>
             </td>
         </tr>
     }
 </table>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using SpaceX.Services.Utilities;
 using SpaceX.Services.Mappers;
 using System.Threading.Tasks;
+using SpaceX.Services.Main;
 using SpaceX.Services.DTOs;
 using System.Net.Http;
 using Newtonsoft.Json;
@@ -13,6 +13,10 @@ namespace SpaceX.Services.Contracts
     public class GetDataService : IGetDataService
     {
         private const string spaceXData = "https://api.spacexdata.com/v3/launches/";
+
+        public GetDataService()
+        {
+        }
 
         public async Task<ICollection<LaunchDTO>> GetAllAsync()
         {

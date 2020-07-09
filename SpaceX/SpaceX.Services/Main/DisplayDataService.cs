@@ -7,6 +7,10 @@ namespace SpaceX.Services.Contracts
 {
     public class DisplayDataService : IDisplayDataService
     {
+        public DisplayDataService()
+        {
+        }
+
         /// <summary>
         /// Sorts a collection of Launch Data a given property.
         /// </summary>
