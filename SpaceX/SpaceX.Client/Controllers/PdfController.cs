@@ -17,6 +17,7 @@ namespace SpaceX.Client.Controllers
             this.converter = converter ?? throw new ArgumentNullException(nameof(converter));
         }
 
+        [HttpGet]
         public async Task<IActionResult> Create(int flightNumber)
         {
             var pdf = await pdfCreatorService.CreatePdf(flightNumber);

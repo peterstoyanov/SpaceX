@@ -51,14 +51,12 @@
                 </section>
             </td>
             <td>
-                <a class="btn btn-primary" href="PDFLINK" download>
-                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                    Download PDF
-                </a>
+                <button onclick="window.open('/Pdf/Create/@item.FlightNumber')";return false;"
+                        class="btn btn-danger btn btn-default" style="text-decoration:none">
+                    <i class="fas fa-file-download"></i>Generate PDF
+                </button>
             </td>
         </tr>
     }
 </table>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-
-
