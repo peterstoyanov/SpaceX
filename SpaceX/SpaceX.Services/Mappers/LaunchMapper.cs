@@ -30,7 +30,8 @@ namespace SpaceX.Services.Mappers
                 LinkMissionPatch = model.Links.MissionPatch,
                 LinkMissionPatchSmall = model.Links.MissionPatchSmall,
                 LinkArticle = model.Links.Article,
-                LinkVideo = model.Links.Video,
+                YouTubeLink = model.Links.YouTubeLink,
+                YouTubeId = model.Links.YouTubeId,
                 LinkImages = model.Links.Images,
                 Details = model.Details,
             };

@@ -5,7 +5,6 @@
     <tr>
         <th>
             @Html.ActionLink("FlightNumber", "Index")
-            @*@Html.LabelFor(model => item.FlightNumber, "Flight Number", new { @class = "control-label" })*@
         </th>
         <th>
             @Html.ActionLink("MissionName", "Index")
@@ -24,6 +23,9 @@
         </th>
         <th>
             PDF
+        </th>
+        <th>
+            Video
         </th>
     </tr>
 
@@ -51,12 +53,21 @@
                 </section>
             </td>
             <td>
-                <button onclick="window.open('/Pdf/Create/@item.FlightNumber')";return false;"
+                <button onclick="window.open('/Pdf/Create/@item.FlightNumber')" ;return false;"
                         class="btn btn-danger btn btn-default" style="text-decoration:none">
                     <i class="fas fa-file-download"></i>Generate PDF
                 </button>
+            </td>
+            <td>
+                @{
+                    var youtubeId = Html.DisplayTextFor(x => item.YouTubeId);
+                    var url = "https://www.youtube.com/embed/" + youtubeId;
+                }
+                    <iframe src="@url" frameborder="0" allow="accelerometer;
+                        autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </td>
         </tr>
     }
 </table>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+

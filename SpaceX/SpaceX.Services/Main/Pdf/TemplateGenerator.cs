@@ -39,7 +39,8 @@ namespace SpaceX.Services.Main.Pdf
                                     <td>{1}</td>
                                     <td>{2}</td>
                                     <td>{3}</td>
-                                  </tr>", data.MissionName, data.LinkVideo, data.LinkMissionPatch, data.LinkImages);
+                                    <td>
+                                  </tr>", data.MissionName, data.YouTubeLink, data.LinkMissionPatch, data.LinkImages);
             
 
             sb.Append(@"

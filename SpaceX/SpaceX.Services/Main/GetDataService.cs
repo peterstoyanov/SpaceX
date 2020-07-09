@@ -25,6 +25,11 @@ namespace SpaceX.Services.Contracts
             return await GetDataAsync();
         }
 
+        public async Task<ICollection<LaunchDTO>> GetAllUpcomingsAsync()
+        {
+            return await GetDataAsync($"{spaceXData}" + "upcoming");
+        }
+
         public async Task<LaunchDTO> GetDataByIdAsync(int flightNumber)
         {
             return (await GetDataAsync($"{spaceXData} + {flightNumber}"))

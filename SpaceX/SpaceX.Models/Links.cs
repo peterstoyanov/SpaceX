@@ -15,9 +15,13 @@ namespace SpaceX.Models
         public string Article { get; set; }
 
         [JsonProperty(PropertyName = "video_link")]
-        public string Video { get; set; }
+        public string YouTubeLink { get; set; }
+
+        [JsonProperty(PropertyName = "youtube_id")]
+        public string YouTubeId { get; set; }
 
         [JsonProperty(PropertyName = "flickr_images")]
         public ICollection<string> Images { get; set; } = new List<string>();
     }
 }
+
