@@ -1,5 +1,6 @@
 ﻿using SpaceX.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using DinkToPdf.Contracts;
 using System;
 
@@ -16,9 +17,9 @@ namespace SpaceX.Client.Controllers
             this.converter = converter ?? throw new ArgumentNullException(nameof(converter));
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int flightNumber)
         {
-            var pdf = pdfCreatorService.CreatePdf();
+            var pdf = await pdfCreatorService.CreatePdf(flightNumber);
             var file = converter.Convert(pdf);
             return File(file, "application/pdf");
         }

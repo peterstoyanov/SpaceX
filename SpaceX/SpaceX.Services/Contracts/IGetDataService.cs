@@ -6,8 +6,8 @@ namespace SpaceX.Services.Contracts
 {
     public interface IGetDataService
     {
-        Task<ICollection<LaunchDTO>> GetAllAsync();
+        Task<ICollection<LaunchDTO>> GetAllDataAsync();
 
-        Task<ICollection<LaunchDTO>> GetDataById(int flightNumber);
+        Task<LaunchDTO> GetDataByIdAsync(int flightNumber);
     }
 }

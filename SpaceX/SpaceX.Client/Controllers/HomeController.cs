@@ -26,7 +26,7 @@ namespace SpaceX.Client.Controllers
         public async Task<IActionResult> Index(string searchString, string sortOption, int page = 1)
         {
             int pageSize = 10;
-            var plans = await getDataService.GetAllAsync();
+            var plans = await getDataService.GetAllDataAsync();
             plans = displayDataService.SearchData(searchString, plans);
             plans = displayDataService.SortData(sortOption, plans);
 

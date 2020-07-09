@@ -7,6 +7,7 @@ using SpaceX.Services.DTOs;
 using System.Net.Http;
 using Newtonsoft.Json;
 using SpaceX.Models;
+using System.Linq;
 
 namespace SpaceX.Services.Contracts
 {
@@ -19,17 +20,17 @@ namespace SpaceX.Services.Contracts
 
         }
 
-        public async Task<ICollection<LaunchDTO>> GetAllAsync()
+        public async Task<ICollection<LaunchDTO>> GetAllDataAsync()
         {
-            return await GetData();
+            return await GetDataAsync();
         }
 
-        public async Task<ICollection<LaunchDTO>> GetDataById(int flightNumber)
+        public async Task<LaunchDTO> GetDataByIdAsync(int flightNumber)
         {
-            return await GetData($"{spaceXData} + {flightNumber}");
+            return (await GetDataAsync($"{spaceXData} + {flightNumber}")).FirstOrDefault();
         }
 
-        private async Task<ICollection<LaunchDTO>> GetData([Optional] string address)
+        private async Task<ICollection<LaunchDTO>> GetDataAsync([Optional] string address)
         {
             using (var client = new HttpClient())
             {

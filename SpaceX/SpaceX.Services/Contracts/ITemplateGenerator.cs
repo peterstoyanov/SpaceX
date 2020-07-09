@@ -4,6 +4,6 @@ namespace SpaceX.Services.Contracts
 {
     public interface ITemplateGenerator
     {
-        string GetHTMLString();
+        Task<string> GetHTMLString(int flightNumber);
     }
 }

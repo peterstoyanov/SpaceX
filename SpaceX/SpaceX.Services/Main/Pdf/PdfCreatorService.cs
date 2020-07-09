@@ -1,4 +1,5 @@
 ﻿using SpaceX.Services.Contracts;
+using System.Threading.Tasks;
 using DinkToPdf;
 using System.IO;
 using System;
@@ -14,12 +15,12 @@ namespace SpaceX.Services.Main.Pdf
             this.templateGenerator = templateGenerator ?? throw new ArgumentNullException(nameof(templateGenerator));
         }
 
-        public HtmlToPdfDocument CreatePdf()
+        public async Task<HtmlToPdfDocument> CreatePdf(int flightNumber)
         {
             var pdf = new HtmlToPdfDocument()
             {
                 GlobalSettings = GlobSettings(),
-                Objects = { ObjSettings() }
+                Objects = { await ObjSettingsAsync(flightNumber) }
             };
 
             return pdf;
@@ -39,12 +40,12 @@ namespace SpaceX.Services.Main.Pdf
             return globalSettings;
         }
 
-        private ObjectSettings ObjSettings()
+        private async Task<ObjectSettings> ObjSettingsAsync(int flightNumber)
         {
             var objectSettings = new ObjectSettings
             {
                 PagesCount = true,
-                HtmlContent = templateGenerator.GetHTMLString(),
+                HtmlContent = await templateGenerator.GetHTMLString(flightNumber),
                 WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/css", "pdfDesign.css") },
                 HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
                 FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Report Footer" }

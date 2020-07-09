@@ -1,4 +1,5 @@
 ﻿using SpaceX.Services.Contracts;
+using System.Threading.Tasks;
 using System.Text;
 using System;
 
@@ -13,9 +14,9 @@ namespace SpaceX.Services.Main.Pdf
             this.getDataService = getDataService ?? throw new ArgumentNullException(nameof(getDataService));
         }
 
-        public string GetHTMLString()
+        public async Task<string> GetHTMLString(int flightNumber)
         {
-            var data = getDataService.GetAllAsync();
+            var data = await getDataService.GetDataByIdAsync(flightNumber);
 
             var sb = new StringBuilder();
             sb.Append(@"
@@ -32,15 +33,14 @@ namespace SpaceX.Services.Main.Pdf
                                         <th>Gender</th>
                                     </tr>");
 
-            foreach (var plan in data.Result)
-            {
+
                 sb.AppendFormat(@"<tr>
                                     <td>{0}</td>
                                     <td>{1}</td>
                                     <td>{2}</td>
                                     <td>{3}</td>
-                                  </tr>", plan.MissionName, plan.LinkVideo, plan.LinkMissionPatch, plan.LinkImages);
-            }
+                                  </tr>", data.MissionName, data.LinkVideo, data.LinkMissionPatch, data.LinkImages);
+            
 
             sb.Append(@"
                                 </table>
