@@ -46,9 +46,9 @@ namespace SpaceX.Services.Main.Pdf
             {
                 PagesCount = true,
                 HtmlContent = await templateGenerator.GetHTMLString(flightNumber),
-                WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/css", "pdfDesign.css") },
-                HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
-                FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "SpaceX" }
+                WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/css", "launchList.css") },
+                HeaderSettings = { Right = "Page [page] of [toPage]", Line = true },
+                FooterSettings = { Line = true, Center = "SpaceX" }
             };
 
             return objectSettings;

@@ -1,88 +1,9 @@
 ﻿@model X.PagedList.IPagedList<SpaceX.Client.Models.DataViewModel>
 @using X.PagedList.Mvc.Core
 
-<style>
-    @@import url('https://fonts.googleapis.com/css?family=Bellefair');
-    p {
-        max-width: 47%;
-    }
-
-    table {
-        position: relative;
-        margin: 2em 0;
-        width: 47%;
-        color: #fff;
-        text-align: left;
-        border-collapse: collapse;
-        background-color: rgba(45,45,55, 0.8);
-        box-shadow: 0 0 10px rgba(0,0,0,0.8);
-        column-count: 3;
-    }
-
-    th, td {
-        padding: 1em 1.5em;
-        font-weight: normal;
-        border: 1px solid #974;
-    }
-
-    thead {
-        text-transform: uppercase;
-    }
-
-    th {
-        white-space: nowrap;
-    }
-
-    td {
-        width: 100%;
-        text-align: center;
-    }
-
-    tbody tr:first-child * {
-        border-top: 0; /* fixes that border */
-    }
-
-    thead tr,
-    tr:nth-child(even) {
-        background-color: rgba(24,24,34,0.8);
-    }
-
-    /* them gribblies */
-    thead:before,
-    thead:after,
-    tbody:before,
-    tbody:after {
-        content: "";
-        position: absolute;
-        top: -3px;
-        left: -3px;
-        display: block;
-        width: 32px;
-        height: 32px;
-        background: url(http://i.imgur.com/9eukjnt.png) 0 0 no-repeat;
-        background-size: 100%;
-    }
-
-    thead:after {
-        right: -4px;
-        left: auto;
-        transform: rotate(90deg);
-    }
-
-    tbody:before {
-        top: auto;
-        bottom: -3px;
-        transform: rotate(-90deg);
-    }
-
-    tbody:after {
-        top: auto;
-        left: auto;
-        bottom: -3px;
-        right: -4px;
-        transform: rotate(-180deg);
-    }
-</style>
+<head>
+    <link rel="stylesheet" href="~/css/launchList.css" />
+</head>
 
 <table class="table">
     <thead>
@@ -170,7 +91,8 @@
                 </th>
                 <td>
                     <button onclick="window.open('/Pdf/Create/@item.FlightNumber')" ;return false;"
-                            class="btn btn-danger btn btn-default"><i class="fas fa-file-download">Generate PDF</i>
+                            class="btn btn-danger btn btn-default">
+                        <i class="fas fa-file-download">Generate PDF</i>
                     </button>
                 </td>
             </tr>
