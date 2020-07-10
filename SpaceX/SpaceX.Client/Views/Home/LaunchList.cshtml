@@ -1,73 +1,206 @@
 ﻿@model X.PagedList.IPagedList<SpaceX.Client.Models.DataViewModel>
 @using X.PagedList.Mvc.Core
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("FlightNumber", "Index")
-        </th>
-        <th>
-            @Html.ActionLink("MissionName", "Index")
-        </th>
-        <th>
-            @Html.ActionLink("LaunchDate", "Index")
-        </th>
-        <th>
-            @Html.ActionLink("RocketName", "Index")
-        </th>
-        <th>
-            @Html.ActionLink("RocketType", "Index")
-        </th>
-        <th>
-            @Html.ActionLink("Details", "Index")
-        </th>
-        <th>
-            PDF
-        </th>
-        <th>
-            Video
-        </th>
-    </tr>
+<style>
+    @@import url('https://fonts.googleapis.com/css?family=Bellefair');
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FlightNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MissionName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LaunchDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RocketName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RocketType)
-            </td>
-            <td>
-                <section id="tm-section-2" class="tm-section tm-section-carousel">
-                    <a href="@item.Details">Info</a>
-                </section>
-            </td>
-            <td>
-                <button onclick="window.open('/Pdf/Create/@item.FlightNumber')" ;return false;"
-                        class="btn btn-danger btn btn-default" style="text-decoration:none">
-                    <i class="fas fa-file-download"></i>Generate PDF
-                </button>
-            </td>
-            <td>
-                @{
-                    var youtubeId = Html.DisplayTextFor(x => item.YouTubeId);
-                    var url = "https://www.youtube.com/embed/" + youtubeId;
-                }
-                    <iframe src="@url" frameborder="0" allow="accelerometer;
-                        autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </td>
-        </tr>
+
+    p {
+        max-width: 47%;
     }
+
+    table {
+        position: relative;
+        margin: 2em 0;
+        width: 47%;
+        color: #fff;
+        text-align: left;
+        border-collapse: collapse;
+        background-color: rgba(45,45,55, 0.8);
+        box-shadow: 0 0 10px rgba(0,0,0,0.8);
+        column-count: 3;
+    }
+
+    th, td {
+        padding: 1em 1.5em;
+        font-weight: normal;
+        border: 1px solid #974;
+    }
+
+    thead {
+        text-transform: uppercase;
+    }
+
+    th {
+        white-space: nowrap;
+    }
+
+    td {
+        width: 100%;
+        text-align: center;
+    }
+
+    tbody tr:first-child * {
+        border-top: 0; /* fixes that border */
+    }
+
+    thead tr,
+    tr:nth-child(even) {
+        background-color: rgba(24,24,34,0.8);
+    }
+
+    /* them gribblies */
+    thead:before,
+    thead:after,
+    tbody:before,
+    tbody:after {
+        content: "";
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        display: block;
+        width: 32px;
+        height: 32px;
+        background: url(http://i.imgur.com/9eukjnt.png) 0 0 no-repeat;
+        background-size: 100%;
+    }
+
+    thead:after {
+        right: -4px;
+        left: auto;
+        transform: rotate(90deg);
+    }
+
+    tbody:before {
+        top: auto;
+        bottom: -3px;
+        transform: rotate(-90deg);
+    }
+
+    tbody:after {
+        top: auto;
+        left: auto;
+        bottom: -3px;
+        right: -4px;
+        transform: rotate(-180deg);
+    }
+</style>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th colspan="2">Launch Plans</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    Mission Patch
+                </th>
+                <td>
+                    <img src="@item.LinkMissionPatchSmall" />
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.ActionLink("FlightNumber", "Index")
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightNumber)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.ActionLink("MissionName", "Index")
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MissionName)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.ActionLink("LaunchDate", "Index")
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LaunchDate)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.ActionLink("RocketName", "Index")
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RocketName)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.ActionLink("RocketType", "Index")
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RocketType)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.ActionLink("Details", "Index")
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    PDF
+                </th>
+                <td>
+                    <button onclick="window.open('/Pdf/Create/@item.FlightNumber')" ;return false;"
+                            class="btn btn-danger btn btn-default" style="text-decoration: none">
+                        <i class="fas fa-file-download"></i>Generate PDF
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Video
+                </th>
+                <td>
+                    @{
+                        var youtubeId = Html.DisplayTextFor(x => item.YouTubeId);
+                        var url = "https://www.youtube.com/embed/" + youtubeId;
+                    }
+                    <iframe src="@url" width="240" height="140" style="border:1px solid black allow=" accelerometer;
+                            autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 
+@*@foreach (var item in Model)
+    {
+
+        <div>
+            <hr />
+            <dl class="row" style="justify-content: center;">
+                <dd>
+                    <img src="@Html.DisplayFor(model => item.LinkMissionPatch)" style="height:500px;width:720px;" />
+                </dd>
+                <dt class="col-lg-8">
+                    @Html.DisplayNameFor(model => item.MissionName)
+                </dt>
+                <dd class="col-lg-8">
+                    @Html.DisplayFor(model => item.LaunchDate)
+                </dd>
+                <dt class="col-lg-8">
+                    @Html.DisplayNameFor(model => item.RocketName)
+                </dt>
+                <dd class="col-lg-8">
+                    @Html.DisplayFor(model => item.RocketType)
+                </dd>
+            </dl>
+        </div>
+    }*@
