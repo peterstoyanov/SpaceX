@@ -5,21 +5,38 @@ namespace SpaceX.Services.DTOs
 {
     public class LaunchDTO
     {
-        public int FlightNumber { get; set; }
+        public int? FlightNumber { get; set; }
         public string MissionName { get; set; }
         public DateTime LaunchDate { get; set; }
-        public bool? LaunchSuccess { get; set; }
 
         public string RocketId { get; set; }
         public string RocketName { get; set; }
         public string RocketType { get; set; }
 
+        public string CoreSerial { get; set; }
+        public int? Flight { get; set; }
+        public int? Block { get; set; }
+
+        public string PayloadId { get; set; }
+        public string[] Customers { get; set; }
+        public string Nationality { get; set; }
+        public string Manufacturer { get; set; }
+        public string PayloadType { get; set; }
+        public string PayloadMassKg { get; set; }
+        public string PayloadMassLbs { get; set; }
+        public string Orbit { get; set; }
+
+        public string ReferenceSystem { get; set; }
+        public string Regime { get; set; }
+
+        public string SiteId { get; set; }
+        public string SiteName { get; set; }
+        public string SiteNameLong { get; set; }
+
         public string LinkMissionPatch { get; set; }
         public string LinkMissionPatchSmall { get; set; }
         public string LinkArticle { get; set; }
-        public string YouTubeLink { get; set; }
         public string YouTubeId { get; set; }
-
         public ICollection<string> LinkImages { get; set; }
 
         public string Details { get; set; }

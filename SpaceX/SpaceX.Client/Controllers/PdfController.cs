@@ -3,9 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using DinkToPdf.Contracts;
 using System;
-using DinkToPdf;
-using SpaceX.Client.Utilities;
-using SpaceX.Client.ClientMapper;
 
 namespace SpaceX.Client.Controllers
 {

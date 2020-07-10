@@ -12,5 +12,11 @@ namespace SpaceX.Models
 
         [JsonProperty(PropertyName = "rocket_type")]
         public string Type { get; set; }
+
+        [JsonProperty(PropertyName = "first_stage")]
+        public FirstStage FirstStage { get; set; }
+
+        [JsonProperty(PropertyName = "second_stage")]
+        public SecondStage SecondStage { get; set; }
     }
 }

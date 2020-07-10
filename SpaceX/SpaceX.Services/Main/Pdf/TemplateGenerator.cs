@@ -37,6 +37,10 @@ namespace SpaceX.Services.Main.Pdf
                                         <td>{launchDTO.LaunchDate}</td>
                                     </tr>
                                      <tr>
+                                        <th>Rocket Id</th>
+                                        <td>{launchDTO.RocketId}<td>
+                                    </tr>
+                                     <tr>
                                         <th>Rocket Name</th>
                                         <td>{launchDTO.RocketName}<td>
                                     </tr>
@@ -45,8 +49,78 @@ namespace SpaceX.Services.Main.Pdf
                                         <td>{launchDTO.RocketType}</td>
                                     </tr>
                                      <tr>
+                                        <th>Core Serial</th>
+                                        <td>{launchDTO.CoreSerial}</td>
+                                    </tr>
+                                      <tr>
+                                        <th>Flight</th>
+                                        <td>{launchDTO.Flight}</td>
+                                    </tr>
+                                     <tr>
+                                        <th>Block</th>
+                                        <td>{launchDTO.Block}<td>
+                                    </tr>
+                                     <tr>
+                                        <th>Payload Id</th>
+                                        <td>{launchDTO.PayloadId}</td>
+                                    </tr>
+                                     <tr>
+                                        <th>Nationality</th>
+                                        <td>{launchDTO.Nationality}<td>
+                                    </tr>
+                                     <tr>
+                                        <th>Manufacturer</th>
+                                        <td>{launchDTO.Manufacturer}<td>
+                                    </tr>
+                                    <tr>
+                                        <th>Payload Type</th>
+                                        <td>{launchDTO.PayloadType}</td>
+                                    </tr>
+                                     <tr>
+                                        <th>Payload Mass Kg</th>
+                                        <td>{launchDTO.PayloadMassKg}</td>
+                                    </tr>
+                                      <tr>
+                                        <th>Payload Mass Lbs</th>
+                                        <td>{launchDTO.PayloadMassLbs}</td>
+                                    </tr>
+                                     <tr>
+                                        <th>Block</th>
+                                        <td>{launchDTO.Block}<td>
+                                    </tr>
+                                     <tr>
+                                        <th>Orbit</th>
+                                        <td>{launchDTO.Orbit}<td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reference System</th>
+                                        <td>{launchDTO.ReferenceSystem}</td>
+                                    </tr>
+                                     <tr>
+                                        <th>Regime</th>
+                                        <td>{launchDTO.Regime}</td>
+                                    </tr>
+                                      <tr>
+                                        <th>Site Id</th>
+                                        <td>{launchDTO.SiteId}</td>
+                                    </tr>
+                                     <tr>
+                                        <th>Site Name</th>
+                                        <td>{launchDTO.SiteName}<td>
+                                    </tr>
+                                     <tr>
+                                        <th>Site Name Long</th>
+                                        <td>{launchDTO.SiteNameLong}<td>
+                                    </tr>
+                                     <tr>
                                         <th>Details</th>
                                         <td>{launchDTO.Details}</td>
+                                    </tr>
+                                     <tr>
+                                        <th>Link Article</th>
+                                        <td>
+                                          <a href=""{launchDTO.LinkArticle}"">See article</a>
+                                       </td>
                                     </tr>
                                   </tbody>");
             sb.Append(@"
@@ -58,6 +132,11 @@ namespace SpaceX.Services.Main.Pdf
     }
 }
 
-//sb.AppendLine("<div> <a style=\"text-decoration:none;border:1px solid #333;\" href ='' >Add to Calendar<img height ='25' width='25' src='calendar.png' alt='logo' /></ a ></div>");
-//string pathToHTMLFile = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/pdf/pdfTemplate.cshtml");
-// string htmlString = File.ReadAllText(pathToHTMLFile);
+    //foreach (var item in launchDTO as IEnumerable<LaunchDTO>)
+    //        {
+    //            sb.Append($@"
+    //                          <tr>
+    //                             <th>""{item.ToString()}""</th>
+    //                             <td>""{item}""<td>
+    //                          </tr>");
+    //        }

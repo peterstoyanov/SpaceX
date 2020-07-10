@@ -6,7 +6,7 @@ namespace SpaceX.Models
     public class Launch
     {
         [JsonProperty(PropertyName = "flight_number")]
-        public int FlightNumber { get; set; }
+        public int? FlightNumber { get; set; }
 
         [JsonProperty(PropertyName = "mission_name")]
         public string MissionName { get; set; }
@@ -17,11 +17,11 @@ namespace SpaceX.Models
         [JsonProperty(PropertyName = "rocket")]
         public Rocket Rocket { get; set; }
 
-        [JsonProperty(PropertyName = "launch_success")]
-        public bool? LaunchSuccess { get; set; }
-
         [JsonProperty(PropertyName = "links")]
         public Links Links { get; set; }
+
+        [JsonProperty(PropertyName = "launch_site")]
+        public LaunchSite LaunchSite { get; set; }
 
         [JsonProperty(PropertyName = "details")]
         public string Details { get; set; }

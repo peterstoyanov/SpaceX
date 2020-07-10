@@ -2,7 +2,6 @@
 using SpaceX.Services.DTOs;
 using SpaceX.Models;
 using System.Linq;
-using System;
 
 namespace SpaceX.Services.Mappers
 {
@@ -13,27 +12,37 @@ namespace SpaceX.Services.Mappers
     {
         public static LaunchDTO MapToDto(this Launch model)
         {
-            if (model == null)
-            {
-                throw new ArgumentNullException();
-            }
+            const string msg = "Information is not available because is missing from SpaceX API";
 
             return new LaunchDTO
             {
                 FlightNumber = model.FlightNumber,
-                MissionName = model.MissionName,
+                MissionName = model.MissionName ?? msg,
                 LaunchDate = model.LaunchDate,
-                LaunchSuccess = model.LaunchSuccess,
-                RocketId = model.Rocket.Id,
-                RocketName = model.Rocket.Name,
-                RocketType = model.Rocket.Type,
-                LinkMissionPatch = model.Links.MissionPatch,
-                LinkMissionPatchSmall = model.Links.MissionPatchSmall,
-                LinkArticle = model.Links.Article,
-                YouTubeLink = model.Links.YouTubeLink,
-                YouTubeId = model.Links.YouTubeId,
+                RocketId = model.Rocket.Id ?? msg,
+                RocketName = model.Rocket.Name ?? msg,
+                RocketType = model.Rocket.Type ?? msg,
+                CoreSerial = model.Rocket.FirstStage.Cores[0].CoreSerial ?? msg,
+                Flight = model.Rocket.FirstStage.Cores[0].Flight,
+                Block = model.Rocket.SecondStage.Block,
+                PayloadId = model.Rocket.SecondStage.Payloads[0].PayloadId ?? msg,
+                Nationality = model.Rocket.SecondStage.Payloads[0].Nationality ?? msg,
+                Manufacturer = model.Rocket.SecondStage.Payloads[0].Manufacturer ?? msg,
+                PayloadType = model.Rocket.SecondStage.Payloads[0].PayloadId ?? msg,
+                PayloadMassKg = model.Rocket.SecondStage.Payloads[0].PayloadMassKg ?? msg,
+                PayloadMassLbs = model.Rocket.SecondStage.Payloads[0].PayloadMassLbs ?? msg,
+                Orbit = model.Rocket.SecondStage.Payloads[0].Orbit ?? msg,
+                ReferenceSystem = model.Rocket.SecondStage.Payloads[0].orbit_params.ReferenceSystem ?? msg,
+                Regime = model.Rocket.SecondStage.Payloads[0].orbit_params.Regime ?? msg,
+                SiteId = model.LaunchSite.SiteId ?? msg,
+                SiteName = model.LaunchSite.SiteName ?? msg,
+                SiteNameLong = model.LaunchSite.SiteNameLong ?? msg,
+                LinkMissionPatch = model.Links.MissionPatch ?? msg,
+                LinkMissionPatchSmall = model.Links.MissionPatchSmall ?? msg,
+                LinkArticle = model.Links.Article ?? msg,
+                YouTubeId = model.Links.YouTubeId ?? msg,
                 LinkImages = model.Links.Images,
-                Details = model.Details,
+                Details = model.Details ?? msg,
             };
         }
 
