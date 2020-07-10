@@ -1,30 +1,19 @@
-﻿using SpaceX.Services.Contracts;
-using System.Threading.Tasks;
+﻿using SpaceX.Services.DTOs;
 using System.Text;
-using System;
 
 namespace SpaceX.Services.Main.Pdf
 {
-    public sealed class TemplateGenerator : ITemplateGenerator
+    public static class TemplateGenerator
     {
-        private readonly IGetDataService getDataService;
-
-        public TemplateGenerator(IGetDataService getDataService)
+        public static string ConvertStringToHtml(LaunchDTO launchDTO)
         {
-            this.getDataService = getDataService ?? throw new ArgumentNullException(nameof(getDataService));
-        }
-
-        public async Task<string> GetHTMLString(int flightNumber)
-        {
-            var data = await getDataService.GetDataByIdAsync(flightNumber);
-
             var sb = new StringBuilder();
             sb.Append(@"
                         <html>
                             <head>
                             </head>
                             <body>
-                                <div class='header'><h1>This is the generated PDF launch plans!!!</h1></div>
+                                <div class='header'>SpaceX Official information about launches<h1></h1></div>
                                 <table align='center'>
                                     <tr>
                                         <th>Name</th>
@@ -33,15 +22,19 @@ namespace SpaceX.Services.Main.Pdf
                                         <th>Gender</th>
                                     </tr>");
 
-
-                sb.AppendFormat(@"<tr>
+            sb.AppendFormat(@"<tr>
                                     <td>{0}</td>
                                     <td>{1}</td>
                                     <td>{2}</td>
                                     <td>{3}</td>
                                     <td>
-                                  </tr>", data.MissionName, data.YouTubeLink, data.LinkMissionPatch, data.LinkImages);
-            
+                                  </tr>",
+
+                              launchDTO.MissionName,
+                              launchDTO.YouTubeLink,
+                              launchDTO.LinkMissionPatch,
+                              launchDTO.LinkImages);
+
 
             sb.Append(@"
                                 </table>

@@ -8,9 +8,9 @@ namespace SpaceX.Services.Main.Pdf
 {
     public class PdfCreatorService : IPdfCreatorService
     {
-        private readonly ITemplateGenerator templateGenerator;
+        private readonly IHtmlService templateGenerator;
 
-        public PdfCreatorService(ITemplateGenerator templateGenerator)
+        public PdfCreatorService(IHtmlService templateGenerator)
         {
             this.templateGenerator = templateGenerator ?? throw new ArgumentNullException(nameof(templateGenerator));
         }
@@ -48,7 +48,7 @@ namespace SpaceX.Services.Main.Pdf
                 HtmlContent = await templateGenerator.GetHTMLString(flightNumber),
                 WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/css", "pdfDesign.css") },
                 HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
-                FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Report Footer" }
+                FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "SpaceX" }
             };
 
             return objectSettings;

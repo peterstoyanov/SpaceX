@@ -13,7 +13,7 @@ namespace SpaceX.Client.Utilities
             services.AddControllersWithViews();
             services.AddScoped<IGetDataService, GetDataService>();
             services.AddScoped<IPdfCreatorService, PdfCreatorService>();
-            services.AddScoped<ITemplateGenerator, TemplateGenerator>();
+            services.AddScoped<IHtmlService, HtmlService>();
             services.AddScoped<IDisplayDataService, DisplayDataService>();
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 

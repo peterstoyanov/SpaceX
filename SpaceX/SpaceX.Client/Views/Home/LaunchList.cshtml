@@ -3,8 +3,6 @@
 
 <style>
     @@import url('https://fonts.googleapis.com/css?family=Bellefair');
-
-
     p {
         max-width: 47%;
     }
@@ -105,6 +103,21 @@
             </tr>
             <tr>
                 <th>
+                    Status
+                </th>
+                <td>
+                    @if (item.LaunchDate > DateTime.UtcNow)
+                    {
+                        <text>Upcoming</text>
+                    }
+                    else
+                    {
+                        <text>Past</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>
                     @Html.ActionLink("FlightNumber", "Index")
                 </th>
                 <td>
@@ -157,8 +170,7 @@
                 </th>
                 <td>
                     <button onclick="window.open('/Pdf/Create/@item.FlightNumber')" ;return false;"
-                            class="btn btn-danger btn btn-default" style="text-decoration: none">
-                        <i class="fas fa-file-download"></i>Generate PDF
+                            class="btn btn-danger btn btn-default"><i class="fas fa-file-download">Generate PDF</i>
                     </button>
                 </td>
             </tr>
@@ -179,28 +191,3 @@
     </tbody>
 </table>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-
-@*@foreach (var item in Model)
-    {
-
-        <div>
-            <hr />
-            <dl class="row" style="justify-content: center;">
-                <dd>
-                    <img src="@Html.DisplayFor(model => item.LinkMissionPatch)" style="height:500px;width:720px;" />
-                </dd>
-                <dt class="col-lg-8">
-                    @Html.DisplayNameFor(model => item.MissionName)
-                </dt>
-                <dd class="col-lg-8">
-                    @Html.DisplayFor(model => item.LaunchDate)
-                </dd>
-                <dt class="col-lg-8">
-                    @Html.DisplayNameFor(model => item.RocketName)
-                </dt>
-                <dd class="col-lg-8">
-                    @Html.DisplayFor(model => item.RocketType)
-                </dd>
-            </dl>
-        </div>
-    }*@
