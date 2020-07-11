@@ -17,10 +17,10 @@ namespace SpaceX.Models
         public string PayloadType { get; set; }
 
         [JsonProperty(PropertyName = "payload_mass_kg")]
-        public string PayloadMassKg { get; set; }
+        public double? PayloadMassKg { get; set; }
 
         [JsonProperty(PropertyName = "payload_mass_lbs")]
-        public string PayloadMassLbs { get; set; }
+        public double? PayloadMassLbs { get; set; }
 
         [JsonProperty(PropertyName = "orbit")]
         public string Orbit { get; set; }

@@ -18,7 +18,7 @@ namespace SpaceX.Models
         public string YouTubeId { get; set; }
 
         [JsonProperty(PropertyName = "flickr_images")]
-        public ICollection<string> Images { get; set; } = new List<string>();
+        public IEnumerable<string> Images { get; set; } = new List<string>();
     }
 }
 

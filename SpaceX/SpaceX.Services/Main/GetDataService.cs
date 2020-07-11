@@ -8,6 +8,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using SpaceX.Models;
 using System.Linq;
+using System;
+using System.Reflection;
 
 namespace SpaceX.Services.Contracts
 {
@@ -20,7 +22,8 @@ namespace SpaceX.Services.Contracts
 
         }
 
-        public async Task<ICollection<LaunchDTO>> GetAllDataAsync()
+
+        public async Task<ICollection<LaunchDTO>> GetAllLaunchesAsync()
         {
             return await GetDataAsync();
         }
@@ -30,10 +33,19 @@ namespace SpaceX.Services.Contracts
             return await GetDataAsync($"{spaceXData}" + "upcoming");
         }
 
-        public async Task<LaunchDTO> GetDataByIdAsync(int flightNumber)
+        public async Task<LaunchDTO> GetLaunchByIdAsync(string flightNumber)
         {
             return (await GetDataAsync($"{spaceXData} + {flightNumber}"))
                 .FirstOrDefault(x => x.FlightNumber == flightNumber);
+        }
+
+        public async Task<IEnumerable<string>> GetValidImages()
+        {
+            var images = (await GetDataAsync())
+                         .Select(x => x.LinkImages.FirstOrDefault())
+                         .Where(x => x != null)
+                         .Take(20);
+            return images;
         }
 
         private async Task<ICollection<LaunchDTO>> GetDataAsync([Optional] string address)
@@ -60,3 +72,7 @@ namespace SpaceX.Services.Contracts
         }
     }
 }
+//var images = (await GetDataAsync())
+//             .Select(x => x.LinkImages.FirstOrDefault())
+//             .Where(x => x != null)
+//             .Take(20);

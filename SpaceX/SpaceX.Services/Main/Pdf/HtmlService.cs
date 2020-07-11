@@ -13,9 +13,9 @@ namespace SpaceX.Services.Main.Pdf
             this.getDataService = getDataService ?? throw new ArgumentNullException(nameof(getDataService));
         }
 
-        public async Task<string> GetHTMLString(int flightNumber)
+        public async Task<string> GetHTMLString(string flightNumber)
         {
-            var data = await getDataService.GetDataByIdAsync(flightNumber);
+            var data = await getDataService.GetLaunchByIdAsync(flightNumber);
             return TemplateGenerator.ConvertStringToHtml(data);
         }
     }

@@ -5,6 +5,6 @@ namespace SpaceX.Services.Contracts
 {
     public interface IPdfCreatorService
     {
-        Task<HtmlToPdfDocument> CreatePdf(int flightNumber);
+        Task<HtmlToPdfDocument> CreatePdf(string flightNumber);
     }
 }

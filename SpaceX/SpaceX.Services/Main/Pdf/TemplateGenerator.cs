@@ -7,9 +7,9 @@ namespace SpaceX.Services.Main.Pdf
     {
         public static string ConvertStringToHtml(LaunchDTO launchDTO)
         {
-            var sb = new StringBuilder();
+            var htmlLayout = new StringBuilder();
 
-            sb.AppendFormat($@"
+            htmlLayout.AppendFormat($@"
                         <html>
                             <head>
                             </head>
@@ -55,15 +55,15 @@ namespace SpaceX.Services.Main.Pdf
                                       <tr>
                                         <th>Flight</th>
                                         <td>{launchDTO.Flight}</td>
-                                    </tr>
-                                     <tr>
+                                     </tr>
+                                      <tr>
                                         <th>Block</th>
                                         <td>{launchDTO.Block}<td>
-                                    </tr>
-                                     <tr>
+                                     </tr>
+                                      <tr>
                                         <th>Payload Id</th>
                                         <td>{launchDTO.PayloadId}</td>
-                                    </tr>
+                                     </tr>
                                      <tr>
                                         <th>Nationality</th>
                                         <td>{launchDTO.Nationality}<td>
@@ -123,20 +123,11 @@ namespace SpaceX.Services.Main.Pdf
                                        </td>
                                     </tr>
                                   </tbody>");
-            sb.Append(@"
+            htmlLayout.Append(@"
                                 </table>
                             </body>
                         </html>");
-            return sb.ToString();
+            return htmlLayout.ToString();
         }
     }
 }
-
-    //foreach (var item in launchDTO as IEnumerable<LaunchDTO>)
-    //        {
-    //            sb.Append($@"
-    //                          <tr>
-    //                             <th>""{item.ToString()}""</th>
-    //                             <td>""{item}""<td>
-    //                          </tr>");
-    //        }

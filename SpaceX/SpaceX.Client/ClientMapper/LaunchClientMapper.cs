@@ -7,7 +7,7 @@ namespace SpaceX.Client.ClientMapper
 {
     public static class LaunchClientMapper
     {
-        public static DataViewModel MapToVM(this LaunchDTO modelDto)
+        public static DataViewModel MapToDM(this LaunchDTO modelDto)
         {
             return new DataViewModel
             {
@@ -23,7 +23,7 @@ namespace SpaceX.Client.ClientMapper
                 PayloadId = modelDto.PayloadId,
                 Nationality = modelDto.Nationality,
                 Manufacturer = modelDto.Manufacturer,
-                PayloadType = modelDto.PayloadId,
+                PayloadType = modelDto.PayloadType,
                 PayloadMassKg = modelDto.PayloadMassKg,
                 PayloadMassLbs = modelDto.PayloadMassLbs,
                 Orbit = modelDto.Orbit,
@@ -42,6 +42,6 @@ namespace SpaceX.Client.ClientMapper
         }
 
         public static ICollection<DataViewModel> MapToVMs(this ICollection<LaunchDTO> models)
-             => models.Select(MapToVM).ToList();
+             => models.Select(MapToDM).ToList();
     }
 }

@@ -15,7 +15,7 @@ namespace SpaceX.Services.Main.Pdf
             this.templateGenerator = templateGenerator ?? throw new ArgumentNullException(nameof(templateGenerator));
         }
 
-        public async Task<HtmlToPdfDocument> CreatePdf(int flightNumber)
+        public async Task<HtmlToPdfDocument> CreatePdf(string flightNumber)
         {
             var pdf = new HtmlToPdfDocument()
             {
@@ -40,7 +40,7 @@ namespace SpaceX.Services.Main.Pdf
             return globalSettings;
         }
 
-        private async Task<ObjectSettings> ObjSettingsAsync(int flightNumber)
+        private async Task<ObjectSettings> ObjSettingsAsync(string flightNumber)
         {
             var objectSettings = new ObjectSettings
             {

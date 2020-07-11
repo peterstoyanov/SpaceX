@@ -3,9 +3,12 @@ using System;
 
 namespace SpaceX.Client.Models
 {
+    /// <summary>
+    /// A model class that is used to take/send Launches concerning data from/to the browser 
+    /// </summary>
     public class DataViewModel
     {
-        public int? FlightNumber { get; set; }
+        public string FlightNumber { get; set; }
         public string MissionName { get; set; }
         public DateTime LaunchDate { get; set; }
 
@@ -14,8 +17,8 @@ namespace SpaceX.Client.Models
         public string RocketType { get; set; }
 
         public string CoreSerial { get; set; }
-        public int? Flight { get; set; }
-        public int? Block { get; set; }
+        public string Flight { get; set; }
+        public string Block { get; set; }
 
         public string PayloadId { get; set; }
         public string Nationality { get; set; }
@@ -36,7 +39,7 @@ namespace SpaceX.Client.Models
         public string LinkMissionPatchSmall { get; set; }
         public string LinkArticle { get; set; }
         public string YouTubeId { get; set; }
-        public ICollection<string> LinkImages { get; set; }
+        public IEnumerable<string> LinkImages { get; set; }
 
         public string Details { get; set; }
     }
