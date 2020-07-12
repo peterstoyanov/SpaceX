@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using SpaceX.Client.Models;
 using System.Diagnostics;
+using System.Linq;
 using X.PagedList;
 using System;
 
@@ -40,7 +41,6 @@ namespace SpaceX.Client.Controllers
             plans = displayDataService.SortData(sortOption, plans);
 
             bool isAjax = HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
-
             return isAjax ? (IActionResult)PartialView("LaunchList", plans.MapToVMs().ToPagedList(page, pageSize))
                  : View(plans.MapToVMs().ToPagedList(page, pageSize));
         }
