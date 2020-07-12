@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace SpaceX.Models
 {
+    /// <summary>
+    /// A class that mapped Links properties from JSON as classes from API.
+    /// </summary>
     public class Links
     {
         [JsonProperty(PropertyName = "mission_patch")]

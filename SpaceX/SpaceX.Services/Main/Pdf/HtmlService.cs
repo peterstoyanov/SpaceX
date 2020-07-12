@@ -13,6 +13,11 @@ namespace SpaceX.Services.Main.Pdf
             this.getDataService = getDataService ?? throw new ArgumentNullException(nameof(getDataService));
         }
 
+        /// <summary>
+        /// Gets HTML data by its given flight number
+        /// </summary>
+        /// <param name="flightNumber">The flight number for the certain launch</param>
+        /// <returns>string</returns>
         public async Task<string> GetHTMLString(string flightNumber)
         {
             var data = await getDataService.GetLaunchByIdAsync(flightNumber);

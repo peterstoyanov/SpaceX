@@ -14,7 +14,11 @@ namespace SpaceX.Services.Main.Pdf
         {
             this.templateGenerator = templateGenerator ?? throw new ArgumentNullException(nameof(templateGenerator));
         }
-
+        /// <summary>
+        /// Creates a PDF document by DinkToPDF Library
+        /// </summary>
+        /// <param name="flightNumber">The flight number for the certain launch</param>
+        /// <returns>HtmlToPdfDocument</returns>
         public async Task<HtmlToPdfDocument> CreatePdf(string flightNumber)
         {
             var pdf = new HtmlToPdfDocument()
@@ -26,6 +30,10 @@ namespace SpaceX.Services.Main.Pdf
             return pdf;
         }
 
+        /// <summary>
+        /// The basic settings for PDF representations of data 
+        /// </summary>
+        /// <returns>GlobalSettings</returns>
         private GlobalSettings GlobSettings()
         {
             var globalSettings = new GlobalSettings
@@ -34,12 +42,16 @@ namespace SpaceX.Services.Main.Pdf
                 Orientation = Orientation.Portrait,
                 PaperSize = PaperKind.A4,
                 Margins = new MarginSettings { Top = 10 },
-                DocumentTitle = "PDF Report",
             };
 
             return globalSettings;
         }
 
+        /// <summary>
+        /// Settings about Html content and CSS loading for a PDF
+        /// </summary>
+        /// <param name="flightNumber">The flight number for the certain launch</param>
+        /// <returns></returns>
         private async Task<ObjectSettings> ObjSettingsAsync(string flightNumber)
         {
             var objectSettings = new ObjectSettings

@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace SpaceX.Models
 {
+    /// <summary>
+    /// A class that mapped FirstStage properties from JSON as classes from API.
+    /// </summary>
     public class FirstStage
     {
         [JsonProperty(PropertyName = "cores")]

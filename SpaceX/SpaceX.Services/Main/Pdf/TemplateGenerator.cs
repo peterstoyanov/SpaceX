@@ -5,11 +5,17 @@ namespace SpaceX.Services.Main.Pdf
 {
     public static class TemplateGenerator
     {
+        /// <summary>
+        /// The method is responsible for converting HTML to string values. 
+        /// Data is necessary for creating a PDF layout.
+        /// </summary>
+        /// <param name="launchDTO">Parameter for a certain launch information</param>
+        /// <returns>string</returns>
         public static string ConvertStringToHtml(LaunchDTO launchDTO)
         {
-            var htmlLayout = new StringBuilder();
+            var pdfLayout = new StringBuilder();
 
-            htmlLayout.AppendFormat($@"
+            pdfLayout.AppendFormat($@"
                         <html>
                             <head>
                             </head>
@@ -123,11 +129,11 @@ namespace SpaceX.Services.Main.Pdf
                                        </td>
                                     </tr>
                                   </tbody>");
-            htmlLayout.Append(@"
+            pdfLayout.Append(@"
                                 </table>
                             </body>
                         </html>");
-            return htmlLayout.ToString();
+            return pdfLayout.ToString();
         }
     }
 }

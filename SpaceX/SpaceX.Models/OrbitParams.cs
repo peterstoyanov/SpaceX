@@ -2,6 +2,9 @@
 
 namespace SpaceX.Models
 {
+    /// <summary>
+    /// A class that mapped OrbitParams properties from JSON as classes from API.
+    /// </summary>
     public class OrbitParams
     {
         [JsonProperty(PropertyName = "reference_system")]

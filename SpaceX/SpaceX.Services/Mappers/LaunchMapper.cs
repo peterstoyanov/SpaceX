@@ -6,11 +6,14 @@ using System.Linq;
 
 namespace SpaceX.Services.Mappers
 {
-    /// <summary>
-    /// Used to map from Launch => LaunchDTO
-    /// </summary>
     public static class LaunchMapper
     {
+        /// <summary>
+        /// Maps a LaunchDTO from an existing entities from API.
+        /// Checks every entity for empty results.
+        /// </summary>
+        /// <param name="model">The target Launch Entity</param>
+        /// <returns>LaunchDTO</returns>
         public static LaunchDTO MapToDto(this Launch model)
         {
             const string msg = "Information is not available because is missing from SpaceX API";
@@ -47,6 +50,11 @@ namespace SpaceX.Services.Mappers
             };
         }
 
+        /// <summary>
+        /// Maps a collection of Launch Data to collection of Launch DTO
+        /// </summary>
+        /// <param name="models"></param>
+        /// <returns>ICollection<LaunchDTO></returns>
         public static ICollection<LaunchDTO> MapToDtos(this ICollection<Launch> models)
              => models.Select(MapToDto).ToList();
     }

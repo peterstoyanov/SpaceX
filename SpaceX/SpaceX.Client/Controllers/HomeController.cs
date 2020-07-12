@@ -7,7 +7,6 @@ using SpaceX.Client.Models;
 using System.Diagnostics;
 using X.PagedList;
 using System;
-using Newtonsoft.Json;
 
 namespace SpaceX.Client.Controllers
 {

@@ -3,6 +3,9 @@ using System;
 
 namespace SpaceX.Models
 {
+    /// <summary>
+    /// A class that mapped Launch properties from JSON as classes from API.
+    /// </summary>
     public class Launch
     {
         [JsonProperty(PropertyName = "flight_number")]

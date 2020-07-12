@@ -2,6 +2,9 @@
 
 namespace SpaceX.Models
 {
+    /// <summary>
+    /// A class that mapped LaunchSite properties from JSON as classes from API.
+    /// </summary>
     public class LaunchSite
     {
         [JsonProperty(PropertyName = "site_id")]

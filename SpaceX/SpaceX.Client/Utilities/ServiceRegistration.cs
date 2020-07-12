@@ -8,6 +8,11 @@ namespace SpaceX.Client.Utilities
 {
     public static class ServiceRegistration
     {
+        /// <summary>
+        /// Stores all needed dependencies for resolving automatically by DI
+        /// </summary>
+        /// <param name="services">Dependency for resolving</param>
+        /// <returns>IServiceCollection</returns>
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddControllersWithViews();

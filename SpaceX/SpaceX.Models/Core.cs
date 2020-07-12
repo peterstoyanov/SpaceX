@@ -2,6 +2,9 @@
 
 namespace SpaceX.Models
 {
+    /// <summary>
+    /// A class that mapped Core properties from JSON as classes from API.
+    /// </summary>
     public class Core
     {
         [JsonProperty(PropertyName = "core_serial")]
