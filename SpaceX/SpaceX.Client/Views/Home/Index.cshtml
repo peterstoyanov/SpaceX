@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<SpaceX.Client.Models.DataViewModel>
 
 <partial name="_Introduction" />
+<partial name="_OfficialPhotos" />
 <partial name="_ContactMe" />
 
 <!-- Launch Plans -- Section 3 -->
@@ -9,7 +10,7 @@
     <p>
         Find by mission name: <input id="SearchString" name="SearchString" type="text" value="" />
         <input type="button" value="Search" id="btnSearch" />
-    </p>    
+    </p>
     <div id="LaunchList">
         <partial name="LaunchList" />
     </div>

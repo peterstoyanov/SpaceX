@@ -1,11 +1,11 @@
 ﻿using SpaceX.Client.ClientMapper;
+using System.Collections.Generic;
 using SpaceX.Services.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using SpaceX.Client.Models;
 using System.Diagnostics;
-using System.Linq;
 using X.PagedList;
 using System;
 
@@ -35,18 +35,25 @@ namespace SpaceX.Client.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Index(string searchString, string sortOption, int page = 1)
         {
-            int pageSize = 1;
             var plans = await getDataService.GetAllLaunchesAsync();
             plans = displayDataService.SearchData(searchString, plans);
             plans = displayDataService.SortData(sortOption, plans);
+            await LoadImages();
 
-            bool isAjax = HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
-            return isAjax ? (IActionResult)PartialView("LaunchList", plans.MapToVMs().ToPagedList(page, pageSize))
-                 : View(plans.MapToVMs().ToPagedList(page, pageSize));
+            return IsAjax(page, plans.MapToVMs());
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Images()
+        private IActionResult IsAjax<T>(int page, ICollection<T> collection)
+        {
+            const int pageSize = 1;
+
+            bool isAjax = HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+
+            return isAjax ? (IActionResult)PartialView("LaunchList", collection.ToPagedList(page, pageSize))
+                  : View(collection.ToPagedList(page, pageSize));
+        }
+
+        private async Task<IActionResult> LoadImages()
         {
             var images = (await getDataService.GetValidImages());
             ViewBag.AllImages = images;
