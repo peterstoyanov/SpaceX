@@ -6,7 +6,7 @@
             <div class="tm-img-slider">
                 @foreach (var item in ViewBag.AllImages)
                 {
-                    <a href="@item" class="tm-slider-img"><img src="@item" class="img-fluid"></a>
+                    <a href="@item" class="tm-slider-img"><img src="@item" class="img-fluid" style="max-height:150%; max-width:100%; margin:auto";></a>
                 }
             </div>
         </div>

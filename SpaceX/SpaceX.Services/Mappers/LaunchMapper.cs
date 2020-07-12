@@ -10,7 +10,7 @@ namespace SpaceX.Services.Mappers
     {
         /// <summary>
         /// Maps a LaunchDTO from an existing entities from API.
-        /// Checks every entity for empty results.
+        /// Checks every entity for an empty results.
         /// </summary>
         /// <param name="model">The target Launch Entity</param>
         /// <returns>LaunchDTO</returns>
@@ -51,9 +51,9 @@ namespace SpaceX.Services.Mappers
         }
 
         /// <summary>
-        /// Maps a collection of Launch Data to collection of Launch DTO
+        /// Maps a collection of Launch to the collection of LaunchDTO
         /// </summary>
-        /// <param name="models"></param>
+        /// <param name="models">The target Launch Entity</param>
         /// <returns>ICollection<LaunchDTO></returns>
         public static ICollection<LaunchDTO> MapToDtos(this ICollection<Launch> models)
              => models.Select(MapToDto).ToList();

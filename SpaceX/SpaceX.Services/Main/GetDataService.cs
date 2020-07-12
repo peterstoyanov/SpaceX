@@ -53,7 +53,7 @@ namespace SpaceX.Services.Contracts
         }
 
         /// <summary>
-        /// Gets twenty images from non-empty collections
+        /// Gets eighteen unique images from non-empty collections
         /// </summary>
         /// <returns>IEnumerable<string></returns>
         public async Task<IEnumerable<string>> GetValidImages()
@@ -61,7 +61,8 @@ namespace SpaceX.Services.Contracts
             return (await GetDataAsync())
                          .Select(x => x.LinkImages.FirstOrDefault())
                          .Where(x => x != null)
-                         .Take(20);
+                         .Distinct()
+                         .TakeLast(18);
         }
 
         /// <summary>

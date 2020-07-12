@@ -13,9 +13,9 @@ namespace SpaceX.Services.Main.Pdf
         /// <returns>string</returns>
         public static string ConvertStringToHtml(LaunchDTO launchDTO)
         {
-            var pdfLayout = new StringBuilder();
+             var pdfLayout = new StringBuilder();
 
-            pdfLayout.AppendFormat($@"
+             pdfLayout.AppendFormat($@"
                         <html>
                             <head>
                             </head>
@@ -40,31 +40,31 @@ namespace SpaceX.Services.Main.Pdf
                                         <th>Mission Patch</th>
                                         <td><img src=""{launchDTO.LinkMissionPatchSmall}""/></td>
                                      </tr>
-                                     <tr>
+                                      <tr>
                                         <th>Flight Number</th>
                                         <td>{launchDTO.FlightNumber}</td>
-                                    </tr>
+                                     </tr>
                                       <tr>
                                         <th>Launch Date</th>
                                         <td>{launchDTO.LaunchDate}</td>
-                                    </tr>
-                                     <tr>
+                                     </tr>
+                                      <tr>
                                         <th>Rocket Id</th>
                                         <td>{launchDTO.RocketId}<td>
-                                    </tr>
-                                     <tr>
+                                     </tr>
+                                      <tr>
                                         <th>Rocket Name</th>
                                         <td>{launchDTO.RocketName}<td>
-                                    </tr>
-                                     <tr>
+                                     </tr>
+                                      <tr>
                                         <th>Rocket Type</th>
                                         <td>{launchDTO.RocketType}</td>
-                                    </tr>
-                                     <tr>
+                                     </tr>
+                                      <tr>
                                         <th>Core Serial</th>
                                         <td>{launchDTO.CoreSerial}</td>
-                                    </tr>
-                                     <tr>
+                                     </tr>
+                                      <tr>
                                         <th>Flight</th>
                                         <td>{launchDTO.Flight}</td>
                                      </tr>
@@ -135,11 +135,12 @@ namespace SpaceX.Services.Main.Pdf
                                        </td>
                                     </tr>
                                   </tbody>");
-            pdfLayout.Append(@"
+             pdfLayout.Append(@"
                                 </table>
                             </body>
                         </html>");
-            return pdfLayout.ToString();
+
+             return pdfLayout.ToString();
         }
     }
 }

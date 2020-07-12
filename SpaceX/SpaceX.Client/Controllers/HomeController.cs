@@ -23,7 +23,7 @@ namespace SpaceX.Client.Controllers
         }
 
         /// <summary>
-        /// Get all launches
+        /// Gets all data for the different page sections of the site.
         /// </summary>
         /// <param name="searchString">A string to search for.</param>
         /// <param name="sortOption">A string to sort by.</param>
@@ -43,6 +43,13 @@ namespace SpaceX.Client.Controllers
             return IsAjax(page, plans.MapToVMs());
         }
 
+        /// <summary>
+        /// Checks for Ajax requests 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="page"></param>
+        /// <param name="collection"></param>
+        /// <returns>On success - IActionResult of the Collection</returns>
         private IActionResult IsAjax<T>(int page, ICollection<T> collection)
         {
             const int pageSize = 1;
@@ -53,11 +60,13 @@ namespace SpaceX.Client.Controllers
                   : View(collection.ToPagedList(page, pageSize));
         }
 
+        /// <summary>
+        /// Loads valid images from service
+        /// </summary>
+        /// <returns>On success - IActionResult of Images</returns>
         private async Task<IActionResult> LoadImages()
         {
-            var images = (await getDataService.GetValidImages());
-            ViewBag.AllImages = images;
-            return View(images);
+            return View(ViewBag.AllImages = (await getDataService.GetValidImages()));
         }
 
         /// <summary>

@@ -7,6 +7,11 @@ namespace SpaceX.Client.ClientMapper
 {
     public static class LaunchClientMapper
     {
+        /// <summary>
+        ///  Mapped LaunchDTO properties to DataViewModel.
+        /// </summary>
+        /// <param name="modelDto">The target LaunchDTO Entity</param>
+        /// <returns></returns>
         public static DataViewModel MapToDM(this LaunchDTO modelDto)
         {
             return new DataViewModel
@@ -41,6 +46,11 @@ namespace SpaceX.Client.ClientMapper
             };
         }
 
+        /// <summary>
+        /// Maps a collection of LaunchDTO to the collection of DataViewModel
+        /// </summary>
+        /// <param name="models"></param>
+        /// <returns>ICollection<DataViewModel>The target LaunchDTO Entity</returns>
         public static ICollection<DataViewModel> MapToVMs(this ICollection<LaunchDTO> models)
              => models.Select(MapToDM).ToList();
     }
