@@ -16,8 +16,7 @@ namespace SpaceX.Services.Mappers
         /// <returns>LaunchDTO</returns>
         public static LaunchDTO MapToDto(this Launch model)
         {
-            const string msg = "Information is not available because is missing from SpaceX API";
-
+            const string msg = "Information is not available because is missing from the SpaceX API";
             return new LaunchDTO
             {
                 FlightNumber = Validator.EmptyIfNull(model.FlightNumber, msg),
@@ -41,10 +40,11 @@ namespace SpaceX.Services.Mappers
                 SiteId = model.LaunchSite.SiteId ?? msg,
                 SiteName = model.LaunchSite.SiteName ?? msg,
                 SiteNameLong = model.LaunchSite.SiteNameLong ?? msg,
-                LinkMissionPatch = model.Links.MissionPatch ?? msg,
-                LinkMissionPatchSmall = model.Links.MissionPatchSmall ?? msg,
+                LinkMissionPatch = model.Links.MissionPatch ?? "/img/missingInfo.jpg",
+                LinkMissionPatchSmall = model.Links.MissionPatchSmall ?? "/img/missingInfo.jpg",
                 LinkArticle = model.Links.Article ?? msg,
-                YouTubeId = model.Links.YouTubeId ?? msg,
+                YouTubeId = model.Links.YouTubeId ?? "/img/youtube.png",
+                Webcast = model.Links.Webcast ?? "/img/youtube.png",
                 LinkImages = model.Links.Images,
                 Details = model.Details ?? msg,
             };

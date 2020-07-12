@@ -79,7 +79,7 @@
             </tr>
             <tr>
                 <th>
-                    @Html.ActionLink("Details", "Index")
+                    Details
                 </th>
                 <td>
                     @Html.DisplayFor(modelItem => item.Details)
@@ -103,10 +103,25 @@
                 <td>
                     @{
                         var youtubeId = Html.DisplayTextFor(x => item.YouTubeId);
-                        var url = "https://www.youtube.com/embed/" + youtubeId;
+                        var youtubeUrl = Html.DisplayTextFor(x => item.Webcast);
+                        string url = "https://www.youtube.com/embed/";
+                        @if (youtubeUrl.EndsWith(youtubeId) && youtubeUrl.Contains(".be"))
+                        {
+                            url = url + youtubeId;
+                            <iframe src="@url" width="240" height="140" style="border:1px solid black allow=" accelerometer;
+                                    autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        }
+                        else if (item.Webcast.EndsWith(youtubeId) && item.Webcast.Contains(".com"))
+                        {
+                            url = url + youtubeId;
+                            <iframe src="@url" width="240" height="140" style="border:1px solid black allow=" accelerometer;
+                                    autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        }
+                        else
+                        {
+                            <img src="@youtubeUrl" width="240" height="140" style="border:1px solid black allow" />
+                        }
                     }
-                    <iframe src="@url" width="240" height="140" style="border:1px solid black allow=" accelerometer;
-                            autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </td>
             </tr>
         }

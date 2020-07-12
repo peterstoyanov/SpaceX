@@ -41,6 +41,7 @@ namespace SpaceX.Client.ClientMapper
                 LinkMissionPatchSmall = modelDto.LinkMissionPatchSmall,
                 LinkArticle = modelDto.LinkArticle,
                 YouTubeId = modelDto.YouTubeId,
+                Webcast = modelDto.Webcast,
                 LinkImages = modelDto.LinkImages,
                 Details = modelDto.Details,
             };

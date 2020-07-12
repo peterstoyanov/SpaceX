@@ -12,10 +12,13 @@ namespace SpaceX.Models
         public string MissionPatch { get; set; }
 
         [JsonProperty(PropertyName = "mission_patch_small")]
-        public string MissionPatchSmall { get; set; } 
+        public string MissionPatchSmall { get; set; }
 
         [JsonProperty(PropertyName = "article_link")]
         public string Article { get; set; }
+
+        [JsonProperty(PropertyName = "video_link")]
+        public string Webcast { get; set; }
 
         [JsonProperty(PropertyName = "youtube_id")]
         public string YouTubeId { get; set; }

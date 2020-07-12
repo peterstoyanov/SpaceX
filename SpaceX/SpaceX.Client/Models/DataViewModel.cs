@@ -39,6 +39,7 @@ namespace SpaceX.Client.Models
         public string LinkMissionPatchSmall { get; set; }
         public string LinkArticle { get; set; }
         public string YouTubeId { get; set; }
+        public string Webcast { get; set; }
         public IEnumerable<string> LinkImages { get; set; }
 
         public string Details { get; set; }

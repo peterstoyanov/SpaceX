@@ -31,11 +31,11 @@ namespace SpaceX.Services.DTOs
         public string SiteId { get; set; }
         public string SiteName { get; set; }
         public string SiteNameLong { get; set; }
-
         public string LinkMissionPatch { get; set; }
         public string LinkMissionPatchSmall { get; set; }
         public string LinkArticle { get; set; }
         public string YouTubeId { get; set; }
+        public string Webcast { get; set; }
         public IEnumerable<string> LinkImages { get; set; }
 
         public string Details { get; set; }

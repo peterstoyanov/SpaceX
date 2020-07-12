@@ -13,9 +13,9 @@ namespace SpaceX.Services.Main.Pdf
         /// <returns>string</returns>
         public static string ConvertStringToHtml(LaunchDTO launchDTO)
         {
-             var pdfLayout = new StringBuilder();
+            var pdfLayout = new StringBuilder();
 
-             pdfLayout.AppendFormat($@"
+            pdfLayout.AppendFormat($@"
                         <html>
                             <head>
                             </head>
@@ -135,12 +135,12 @@ namespace SpaceX.Services.Main.Pdf
                                        </td>
                                     </tr>
                                   </tbody>");
-             pdfLayout.Append(@"
+            pdfLayout.Append(@"
                                 </table>
                             </body>
                         </html>");
 
-             return pdfLayout.ToString();
+            return pdfLayout.ToString();
         }
     }
 }
