@@ -6,6 +6,18 @@
 
 **[Click](https://vimeo.com/437704263) to see a video demonstration of the site.**
 
+**Introduction**
+![100x100](SpaceX/SpaceX.Client/wwwroot/readme/1.jpg)
+
+**Official Photos**
+![100x100](SpaceX/SpaceX.Client/wwwroot/readme/2.jpg)
+
+**Launch Plans**
+![100x100](SpaceX/SpaceX.Client/wwwroot/readme/3.jpg)
+
+**Elon Musk**
+![100x100](SpaceX/SpaceX.Client/wwwroot/readme/4.jpg)
+
 The solution consists of three projects:
 
 -   **SpaceX.Client**:   A Project with controllers that make endpoints available as well as files for the front-end components and settings
